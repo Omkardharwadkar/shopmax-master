@@ -32,6 +32,21 @@ jQuery(document).ready(function($) {
         }
 	    }
 		});
+
+		// Hero Slider
+		$('.hero-slider').owlCarousel({
+			items: 1,
+			loop: true,
+			autoplay: true,
+			autoplayTimeout: 5000,
+			autoplayHoverPause: true,
+			nav: true,
+			navText: ['<span class="icon-arrow_back">', '<span class="icon-arrow_forward">'],
+			dots: true,
+			animateOut: 'fadeOut',
+			animateIn: 'fadeIn',
+			smartSpeed: 1000
+		});
 	};
 	slider();
 
@@ -152,14 +167,14 @@ jQuery(document).ready(function($) {
     $( "#slider-range" ).slider({
       range: true,
       min: 0,
-      max: 500,
-      values: [ 75, 300 ],
+      max: 10000,
+      values: [ 500, 8000 ],
       slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+        $( "#amount" ).val( "₹" + ui.values[ 0 ].toLocaleString('en-IN') + " - ₹" + ui.values[ 1 ].toLocaleString('en-IN') );
       }
     });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    $( "#amount" ).val( "₹" + $( "#slider-range" ).slider( "values", 0 ).toLocaleString('en-IN') +
+      " - ₹" + $( "#slider-range" ).slider( "values", 1 ).toLocaleString('en-IN') );
 	};
 	siteSliderRange();
 
@@ -210,8 +225,69 @@ jQuery(document).ready(function($) {
 		$('.js-search-close').on('click', function(e) {
 			e.preventDefault();
 			searchWrap.removeClass('active');
-		})
+		});
+
+		// Global search functionality
+		$('.search-wrap form').on('submit', function(e) {
+			e.preventDefault();
+			var query = $(this).find('input[type="text"]').val().trim();
+			if (query) {
+				window.location.href = 'shop.html?search=' + encodeURIComponent(query);
+			}
+		});
 	};
 	searchShow();
+
+	// Product Image Gallery Functionality
+	var productImageGallery = function() {
+		$('.thumbnail-image').on('click', function() {
+			var $this = $(this);
+			var newImageSrc = $this.data('image');
+			var $primaryImage = $('#primaryImage');
+			var $primaryContainer = $('.primary-image-container');
+			
+			// Remove active class from all thumbnails
+			$('.thumbnail-image').removeClass('active');
+			// Add active class to clicked thumbnail
+			$this.addClass('active');
+			
+			// Add fade out animation
+			$primaryContainer.addClass('fading-out');
+			
+			setTimeout(function() {
+				// Change image source
+				$primaryImage.attr('src', newImageSrc);
+				// Remove fade out and add fade in
+				$primaryContainer.removeClass('fading-out').addClass('fading-in');
+				
+				setTimeout(function() {
+					$primaryContainer.removeClass('fading-in');
+				}, 300);
+			}, 300);
+		});
+
+		// Hover effect on thumbnails
+		$('.thumbnail-image').hover(
+			function() {
+				$(this).addClass('thumbnail-hover');
+			},
+			function() {
+				$(this).removeClass('thumbnail-hover');
+			}
+		);
+
+		// Image zoom on hover for primary image
+		$('.primary-image-container').hover(
+			function() {
+				$(this).find('.primary-image').addClass('image-zoom');
+				$(this).find('.image-zoom-indicator').fadeIn(200);
+			},
+			function() {
+				$(this).find('.primary-image').removeClass('image-zoom');
+				$(this).find('.image-zoom-indicator').fadeOut(200);
+			}
+		);
+	};
+	productImageGallery();
 
 });

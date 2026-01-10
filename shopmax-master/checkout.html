@@ -46,26 +46,18 @@
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li class="has-children ">
-                  <a href="index.html">Home</a>
+                <li><a href="index.html">Home</a></li>
+                <li class="has-children">
+                  <a href="shop.html">Shop</a>
                   <ul class="dropdown">
-                    <li><a href="#">Menu One</a></li>
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
-                    <li class="has-children">
-                      <a href="#">Sub Menu</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
-                    </li>
+                    <li><a href="shop.html?category=Men">Men's Clothing</a></li>
+                    <li><a href="shop.html?category=Women">Women's Clothing</a></li>
+                    <li><a href="shop.html?category=Shoes">Shoes</a></li>
+                    <li><a href="shop.html?category=Accessories">Accessories</a></li>
                   </ul>
                 </li>
-                
-                <li class="active"><a href="shop.html">Shop</a></li>
-                <li><a href="#">Catalogue</a></li>
-                <li><a href="#">New Arrivals</a></li>
+                <li><a href="shop.html?sort=latest">New Arrivals</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
               </ul>
             </nav>
@@ -295,23 +287,8 @@
                       <th>Product</th>
                       <th>Total</th>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
-                        <td>$250.00</td>
-                      </tr>
-                      <tr>
-                        <td>Polo Shirt <strong class="mx-2">x</strong>   1</td>
-                        <td>$100.00</td>
-                      </tr>
-                      <tr>
-                        <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                        <td class="text-black">$350.00</td>
-                      </tr>
-                      <tr>
-                        <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                        <td class="text-black font-weight-bold"><strong>$350.00</strong></td>
-                      </tr>
+                    <tbody id="checkoutOrderItems">
+                      <!-- Order items will be loaded dynamically -->
                     </tbody>
                   </table>
 
@@ -443,7 +420,58 @@
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/aos.js"></script>
 
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
+  
+  <script>
+    // Checkout page - load order summary
+    document.addEventListener('DOMContentLoaded', function() {
+      const Cart = window.ShopMaxCart;
+      const cart = Cart.getCart();
+      const tbody = document.getElementById('checkoutOrderItems');
+
+      if (!tbody) return;
+
+      if (cart.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="2" class="text-center py-3">Your cart is empty. <a href="shop.html">Continue Shopping</a></td>
+          </tr>
+        `;
+        return;
+      }
+
+      let subtotal = 0;
+      tbody.innerHTML = cart.map(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        return `
+          <tr>
+            <td>${item.name} ${item.size ? `(Size: ${item.size})` : ''} ${item.color ? `(${item.color})` : ''} <strong class="mx-2">x</strong> ${item.quantity}</td>
+            <td>₹${itemTotal.toLocaleString('en-IN')}</td>
+          </tr>
+        `;
+      }).join('') + `
+        <tr>
+          <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+          <td class="text-black">₹${subtotal.toLocaleString('en-IN')}</td>
+        </tr>
+        <tr>
+          <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+          <td class="text-black font-weight-bold"><strong>₹${subtotal.toLocaleString('en-IN')}</strong></td>
+        </tr>
+      `;
+
+      // Place order button
+      document.querySelector('button[onclick*="thankyou.html"]')?.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Clear cart after order
+        Cart.clearCart();
+        window.location.href = 'thankyou.html';
+      });
+    });
+  </script>
     
   </body>
 </html>

@@ -30,8 +30,8 @@
       <div class="search-wrap">
         <div class="container">
           <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
-          <form action="#" method="post">
-            <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+          <form action="#" method="post" id="searchForm">
+            <input type="text" class="form-control" id="searchInput" placeholder="Search keyword and hit enter..." autocomplete="off">
           </form>  
         </div>
       </div>
@@ -46,26 +46,18 @@
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li class="has-children ">
-                  <a href="index.html">Home</a>
+                <li><a href="index.html">Home</a></li>
+                <li class="has-children active">
+                  <a href="shop.html">Shop</a>
                   <ul class="dropdown">
-                    <li><a href="#">Menu One</a></li>
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
-                    <li class="has-children">
-                      <a href="#">Sub Menu</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                      </ul>
-                    </li>
+                    <li><a href="shop.html?category=Men">Men's Clothing</a></li>
+                    <li><a href="shop.html?category=Women">Women's Clothing</a></li>
+                    <li><a href="shop.html?category=Shoes">Shoes</a></li>
+                    <li><a href="shop.html?category=Accessories">Accessories</a></li>
                   </ul>
                 </li>
-                
-                <li class="active"><a href="shop.html">Shop</a></li>
-                <li><a href="#">Catalogue</a></li>
-                <li><a href="#">New Arrivals</a></li>
+                <li><a href="shop.html?sort=latest">New Arrivals</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
               </ul>
             </nav>
@@ -117,154 +109,37 @@
 
             <div class="row align">
               <div class="col-md-12 mb-5">
-                <div class="float-md-left"><h2 class="text-black h5">Shop All</h2></div>
+                <div class="float-md-left"><h2 class="text-black h5">Shop All - <span id="productCount">16</span> Products</h2></div>
                 <div class="d-flex">
                   <div class="dropdown mr-1 ml-md-auto">
                     <button type="button" class="btn btn-white btn-sm dropdown-toggle px-4" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Latest
+                      All Categories
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-                      <a class="dropdown-item" href="#">Men</a>
-                      <a class="dropdown-item" href="#">Women</a>
-                      <a class="dropdown-item" href="#">Children</a>
+                      <a class="dropdown-item filter-category" href="#" data-category="">All Categories</a>
+                      <a class="dropdown-item filter-category" href="#" data-category="Men">Men</a>
+                      <a class="dropdown-item filter-category" href="#" data-category="Women">Women</a>
+                      <a class="dropdown-item filter-category" href="#" data-category="Shoes">Shoes</a>
+                      <a class="dropdown-item filter-category" href="#" data-category="Accessories">Accessories</a>
                     </div>
                   </div>
                   <div class="btn-group">
                     <button type="button" class="btn btn-white btn-sm dropdown-toggle px-4" id="dropdownMenuReference" data-toggle="dropdown">Reference</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                      <a class="dropdown-item" href="#">Relevance</a>
-                      <a class="dropdown-item" href="#">Name, A to Z</a>
-                      <a class="dropdown-item" href="#">Name, Z to A</a>
+                      <a class="dropdown-item sort-option" href="#" data-sort="relevance">Relevance</a>
+                      <a class="dropdown-item sort-option" href="#" data-sort="name-asc">Name, A to Z</a>
+                      <a class="dropdown-item sort-option" href="#" data-sort="name-desc">Name, Z to A</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Price, low to high</a>
-                      <a class="dropdown-item" href="#">Price, high to low</a>
+                      <a class="dropdown-item sort-option" href="#" data-sort="price-low">Price, low to high</a>
+                      <a class="dropdown-item sort-option" href="#" data-sort="price-high">Price, high to low</a>
+                      <a class="dropdown-item sort-option" href="#" data-sort="rating">Highest Rated</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row mb-5">
-
-              <div class="col-lg-6 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                  <img src="images/prod_2.png" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Gray Shoe</a></h2>
-                <strong class="item-price">$20.00</strong>
-              </div>
-              <div class="col-lg-6 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                  <img src="images/prod_3.png" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Blue Shoe High Heels</a></h2>
-                <strong class="item-price"><del>$46.00</del> $28.00</strong>
-              </div>
-
-              <div class="col-lg-6 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                  <img src="images/model_5.png" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Denim Jacket</a></h2>
-                <strong class="item-price"><del>$46.00</del> $28.00</strong>
-
-                <div class="star-rating">
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                </div>
-
-              </div>
-              <div class="col-lg-6 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                  <img src="images/prod_1.png" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Leather Green Bag</a></h2>
-                <strong class="item-price"><del>$46.00</del> $28.00</strong>
-                <div class="star-rating">
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                </div>
-              </div>
-
-              <div class="col-lg-6 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                  <img src="images/model_1.png" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Smooth Cloth</a></h2>
-                <strong class="item-price"><del>$46.00</del> $28.00</strong>
-              </div>
-              <div class="col-lg-6 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                  <img src="images/model_7.png" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Yellow Jacket</a></h2>
-                <strong class="item-price">$58.00</strong>
-              </div>
-              <div class="col-lg-6 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                  <img src="images/prod_2.png" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Gray Shoe</a></h2>
-                <strong class="item-price">$20.00</strong>
-              </div>
-              <div class="col-lg-6 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                  <img src="images/prod_3.png" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Blue Shoe High Heels</a></h2>
-                <strong class="item-price"><del>$46.00</del> $28.00</strong>
-              </div>
-
-              <div class="col-lg-6 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                  <img src="images/model_5.png" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Denim Jacket</a></h2>
-                <strong class="item-price"><del>$46.00</del> $28.00</strong>
-
-                <div class="star-rating">
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                </div>
-
-              </div>
-              <div class="col-lg-6 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                  <img src="images/prod_1.png" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Leather Green Bag</a></h2>
-                <strong class="item-price"><del>$46.00</del> $28.00</strong>
-                <div class="star-rating">
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                  <span class="icon-star2 text-warning"></span>
-                </div>
-              </div>
-
-              <div class="col-lg-6 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                  <img src="images/model_1.png" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Smooth Cloth</a></h2>
-                <strong class="item-price"><del>$46.00</del> $28.00</strong>
-              </div>
-              <div class="col-lg-6 col-md-6 item-entry mb-4">
-                <a href="#" class="product-item md-height bg-gray d-block">
-                  <img src="images/model_7.png" alt="Image" class="img-fluid">
-                </a>
-                <h2 class="item-title"><a href="#">Yellow Jacket</a></h2>
-                <strong class="item-price">$58.00</strong>
-              </div>
+            <div class="row mb-5" id="productsContainer">
+              <!-- Products will be loaded dynamically here -->
             </div>
             <div class="row">
               <div class="col-md-12 text-center">
@@ -287,15 +162,16 @@
             <div class="border p-4 rounded mb-4">
               <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
               <ul class="list-unstyled mb-0">
-                <li class="mb-1"><a href="#" class="d-flex"><span>Men</span> <span class="text-black ml-auto">(2,220)</span></a></li>
-                <li class="mb-1"><a href="#" class="d-flex"><span>Women</span> <span class="text-black ml-auto">(2,550)</span></a></li>
-                <li class="mb-1"><a href="#" class="d-flex"><span>Children</span> <span class="text-black ml-auto">(2,124)</span></a></li>
+                <li class="mb-1"><a href="shop.html?category=Men" class="d-flex category-filter"><span>Men</span> <span class="text-black ml-auto" id="cat-men-count">(0)</span></a></li>
+                <li class="mb-1"><a href="shop.html?category=Women" class="d-flex category-filter"><span>Women</span> <span class="text-black ml-auto" id="cat-women-count">(0)</span></a></li>
+                <li class="mb-1"><a href="shop.html?category=Shoes" class="d-flex category-filter"><span>Shoes</span> <span class="text-black ml-auto" id="cat-shoes-count">(0)</span></a></li>
+                <li class="mb-1"><a href="shop.html?category=Accessories" class="d-flex category-filter"><span>Accessories</span> <span class="text-black ml-auto" id="cat-accessories-count">(0)</span></a></li>
               </ul>
             </div>
 
             <div class="border p-4 rounded mb-4">
               <div class="mb-4">
-                <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price</h3>
+                <h3 class="mb-3 h6 text-uppercase text-black d-block">Filter by Price (₹)</h3>
                 <div id="slider-range" class="border-primary"></div>
                 <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
               </div>
@@ -303,13 +179,16 @@
               <div class="mb-4">
                 <h3 class="mb-3 h6 text-uppercase text-black d-block">Size</h3>
                 <label for="s_sm" class="d-flex">
-                  <input type="checkbox" id="s_sm" class="mr-2 mt-1"> <span class="text-black">Small (2,319)</span>
+                  <input type="checkbox" id="s_sm" class="mr-2 mt-1 size-filter" value="S"> <span class="text-black">Small</span>
                 </label>
                 <label for="s_md" class="d-flex">
-                  <input type="checkbox" id="s_md" class="mr-2 mt-1"> <span class="text-black">Medium (1,282)</span>
+                  <input type="checkbox" id="s_md" class="mr-2 mt-1 size-filter" value="M"> <span class="text-black">Medium</span>
                 </label>
                 <label for="s_lg" class="d-flex">
-                  <input type="checkbox" id="s_lg" class="mr-2 mt-1"> <span class="text-black">Large (1,392)</span>
+                  <input type="checkbox" id="s_lg" class="mr-2 mt-1 size-filter" value="L"> <span class="text-black">Large</span>
+                </label>
+                <label for="s_xl" class="d-flex">
+                  <input type="checkbox" id="s_xl" class="mr-2 mt-1 size-filter" value="XL"> <span class="text-black">Extra Large</span>
                 </label>
               </div>
 
@@ -447,7 +326,223 @@
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/aos.js"></script>
 
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
+  
+  <script>
+    // Shop page functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const Products = window.ShopMaxProducts;
+      let currentFilters = {
+        category: '',
+        minPrice: 0,
+        maxPrice: 10000,
+        size: '',
+        color: '',
+        sort: 'relevance'
+      };
+
+      // Get URL parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('category')) {
+        currentFilters.category = urlParams.get('category');
+        document.querySelector('[data-category="' + currentFilters.category + '"]')?.click();
+      }
+      if (urlParams.get('sort')) {
+        currentFilters.sort = urlParams.get('sort');
+        document.querySelector('[data-sort="' + currentFilters.sort + '"]')?.click();
+      }
+
+      // Update category counts
+      function updateCategoryCounts() {
+        const categories = ['Men', 'Women', 'Shoes', 'Accessories'];
+        categories.forEach(cat => {
+          const count = Products.getByCategory(cat).length;
+          const el = document.getElementById('cat-' + cat.toLowerCase().replace(' ', '-') + '-count');
+          if (el) el.textContent = '(' + count + ')';
+        });
+      }
+
+      // Render products
+      function renderProducts() {
+        if (!Products) {
+          console.error('Products not loaded');
+          return;
+        }
+        
+        const products = window.searchResults || Products.filter(currentFilters);
+        const container = document.getElementById('productsContainer');
+        const productCountEl = document.getElementById('productCount');
+        
+        if (!container) return;
+        
+        // Update product count
+        if (productCountEl) {
+          productCountEl.textContent = products.length;
+        }
+        
+        if (products.length === 0) {
+          container.innerHTML = '<div class="col-12 text-center py-5"><h4>No products found</h4><p>Try adjusting your filters</p></div>';
+          return;
+        }
+
+        container.innerHTML = products.map(product => Products.renderCard(product)).join('');
+        
+        // Re-attach event listeners for new products
+        attachProductListeners();
+      }
+
+      function attachProductListeners() {
+        // Add to cart buttons
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const productData = this.dataset.product;
+            if (productData) {
+              try {
+                const product = JSON.parse(productData);
+                window.ShopMaxCart.addItem(product);
+              } catch (error) {
+                console.error('Error adding to cart:', error);
+              }
+            }
+          });
+        });
+
+        // Wishlist buttons
+        document.querySelectorAll('.wishlist-btn').forEach(btn => {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const productId = this.dataset.productId;
+            window.ShopMaxWishlist.toggleItem(productId);
+          });
+        });
+      }
+
+      // Filter handlers
+      document.querySelectorAll('.filter-category').forEach(item => {
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          currentFilters.category = this.dataset.category || '';
+          document.querySelector('#dropdownMenuOffset').textContent = this.textContent.trim();
+          renderProducts();
+        });
+      });
+
+      document.querySelectorAll('.sort-option').forEach(item => {
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          currentFilters.sort = this.dataset.sort || 'relevance';
+          document.querySelector('#dropdownMenuReference').textContent = this.textContent.trim();
+          renderProducts();
+        });
+      });
+
+      // Size filter
+      document.querySelectorAll('.size-filter').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          const selectedSizes = Array.from(document.querySelectorAll('.size-filter:checked'))
+            .map(cb => cb.value);
+          currentFilters.size = selectedSizes.length > 0 ? selectedSizes[0] : '';
+          renderProducts();
+        });
+      });
+
+      // Color filter
+      document.querySelectorAll('.color-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          const colorText = this.querySelector('.text-black').textContent;
+          const color = colorText.split(' ')[0];
+          currentFilters.color = currentFilters.color === color ? '' : color;
+          
+          // Update UI
+          document.querySelectorAll('.color-item').forEach(i => i.classList.remove('active'));
+          if (currentFilters.color === color) {
+            this.classList.add('active');
+          }
+          
+          renderProducts();
+        });
+      });
+
+      // Price slider - Updated for INR (0 to 10000)
+      const slider = document.getElementById('slider-range');
+      if (slider) {
+        // Update slider range for INR
+        if ($(slider).slider('instance')) {
+          $(slider).slider('destroy');
+        }
+        $(slider).slider({
+          range: true,
+          min: 0,
+          max: 10000,
+          values: [500, 8000],
+          slide: function(event, ui) {
+            currentFilters.minPrice = ui.values[0];
+            currentFilters.maxPrice = ui.values[1];
+            $('#amount').val('₹' + ui.values[0].toLocaleString('en-IN') + ' - ₹' + ui.values[1].toLocaleString('en-IN'));
+            renderProducts();
+          }
+        });
+        $('#amount').val('₹' + $(slider).slider('values', 0).toLocaleString('en-IN') + ' - ₹' + $(slider).slider('values', 1).toLocaleString('en-IN'));
+      }
+
+      // Search functionality - check URL params first
+      const searchQuery = urlParams.get('search');
+      if (searchQuery) {
+        const results = Products.search(searchQuery);
+        window.searchResults = results;
+        renderSearchResults(results);
+        // Pre-fill search input if it exists
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) searchInput.value = searchQuery;
+      }
+
+      // Search form
+      const searchForm = document.getElementById('searchForm');
+      const searchInput = document.getElementById('searchInput');
+      
+      if (searchForm) {
+        searchForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const query = searchInput.value.trim();
+          if (query) {
+            const results = Products.search(query);
+            currentFilters = { ...currentFilters };
+            window.searchResults = results;
+            renderSearchResults(results);
+          }
+        });
+
+        searchInput.addEventListener('input', function() {
+          if (this.value.trim() === '') {
+            window.searchResults = null;
+            renderProducts();
+          }
+        });
+      }
+
+      function renderSearchResults(results) {
+        const container = document.getElementById('productsContainer');
+        if (results.length === 0) {
+          container.innerHTML = '<div class="col-12 text-center py-5"><h4>No products found</h4><p>Try a different search term</p></div>';
+          return;
+        }
+        container.innerHTML = '<div class="col-12 mb-4"><h5>Search Results (' + results.length + ' products found)</h5></div>' +
+          results.map(product => Products.renderCard(product)).join('');
+        attachProductListeners();
+      }
+
+      // Initialize
+      updateCategoryCounts();
+      renderProducts();
+    });
+  </script>
     
   </body>
+</html>
 </html>
